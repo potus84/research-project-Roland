@@ -1,0 +1,184 @@
+Find optimal n_estimators
+Parameters of the xgboost: 
+    {learning_rate =0.1,
+    n_estimators=5000,
+    max_depth=5,
+    min_child_weight=1,
+    gamma=0,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    objective= 'binary:logistic',
+    n_jobs=-1}
+metrics: 'error'
+early_stopping_rounds=50
+Best round: 427
+Tuning max_depth and min_child_weight
+Grid = {
+ 'max_depth':range(1,10,2),
+ 'min_child_weight':range(1,650,100)
+}
+Best params:  params               {'max_depth': 9, 'min_child_weight': 1}
+mean_test_score_0                                   0.945488
+mean_test_score_1                                   0.945519
+mean_test_score_2                                   0.945442
+mean_test_score_3                                   0.945504
+avg                                                 0.945488
+
+Grid = {
+ 'max_depth':range(1,10,2),
+ 'min_child_weight':range(1, 10, 2)
+}
+Best params:  params               {'max_depth': 9, 'min_child_weight': 1}
+mean_test_score_0                                   0.945488
+mean_test_score_1                                   0.945519
+mean_test_score_2                                   0.945442
+mean_test_score_3                                   0.945504
+avg                                                 0.945488
+Grid = {
+ 'max_depth':[9, 10],
+ 'min_child_weight':[1, 2]
+}
+
+Best params:  params               {'max_depth': 10, 'min_child_weight': 1}
+mean_test_score_0                                    0.945119
+mean_test_score_1                                    0.945458
+mean_test_score_2                                    0.945934
+mean_test_score_3                                    0.946057
+avg                                                  0.945642
+
+Grid = {
+ 'max_depth':[i for i in range (10, 30, 5)],
+}
+
+
+
+Tuning gamma
+Grid = {
+ 'gamma':[i/10.0 for i in range(0,5)]
+}
+Best params:  params               {'gamma': 0.1}
+mean_test_score_0          0.945904
+mean_test_score_1          0.945104
+mean_test_score_2          0.945734
+mean_test_score_3          0.945904
+avg                        0.945661
+
+Recablirating and 1st tune the n_estimators
+Parameters of the xgboost: 
+    {learning_rate =0.1,
+    n_estimators=5000,
+    max_depth=10,
+    min_child_weight=1,
+    gamma=0.1,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    objective= 'binary:logistic',
+    n_jobs=-1,
+    scale_pos_weight=1,
+    seed=27}
+metrics: 'error'
+early_stopping_rounds=50
+Best round: 326
+
+Grid = {
+ 'n_estimators':[i for i in range(100, 1000, 100)]+[326]
+}
+Best params:  params               {'n_estimators': 800}
+mean_test_score_0                 0.946596
+mean_test_score_1                 0.945565
+mean_test_score_2                  0.94618
+mean_test_score_3                 0.946211
+avg                               0.946138
+
+Grid = {
+ 'n_estimators':[i for i in range(800, 900, 20)]
+}
+Best params:  params               {'n_estimators': 880}
+mean_test_score_0                 0.946642
+mean_test_score_1                 0.945673
+mean_test_score_2                 0.946042
+mean_test_score_3                 0.946303
+avg                               0.946165
+
+Tuning the subsample and colsample_bytree
+
+Grid = {
+ 'subsample':[i/10.0 for i in range(6,10)],
+ 'colsample_bytree':[i/10.0 for i in range(6,10)]
+}
+Best params:  params               {'colsample_bytree': 0.8, 'subsample': 0.8}
+mean_test_score_0                                       0.946642
+mean_test_score_1                                       0.945673
+mean_test_score_2                                       0.946042
+mean_test_score_3                                       0.946303
+avg                                                     0.946165
+
+Grid = {
+ 'subsample':[i/100.0 for i in range(75,90,5)],
+ 'colsample_bytree':[i/100.0 for i in range(75,90,5)]
+}
+Best params:  params               {'colsample_bytree': 0.8, 'subsample': 0.8}
+mean_test_score_0                                       0.946642
+mean_test_score_1                                       0.945673
+mean_test_score_2                                       0.946042
+mean_test_score_3                                       0.946303
+avg                                                     0.946165
+
+
+Tuning Regularization Parameters
+Grid = {
+ 'reg_alpha':[0, 1e-5, 1e-2, 0.1, 1, 100]
+}
+Best params:  params               {'reg_alpha': 0}
+mean_test_score_0            0.946642
+mean_test_score_1            0.945673
+mean_test_score_2            0.946042
+mean_test_score_3            0.946303
+avg                          0.946165
+
+Grid = {
+ 'reg_alpha':[0, 1e-6, 5e-6, 1e-5, 5e-5, 1e-4, 5e-4]
+}
+Best params:  params               {'reg_alpha': 0}
+mean_test_score_0            0.946642
+mean_test_score_1            0.945673
+mean_test_score_2            0.946042
+mean_test_score_3            0.946303
+avg                          0.946165
+
+Reduce learning rate and tune the n_estimators
+XGBClassifier(
+    learning_rate =0.01,
+    n_estimators=880,
+    max_depth=10,
+    min_child_weight=1,
+    gamma=0.1,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    reg_alpha=0,
+    objective= 'binary:logistic',
+    n_jobs=-1,
+    scale_pos_weight=1,
+    seed=0)
+early_stopping_rounds = 50
+best round = 1080
+
+Grid = {
+ 'n_estimators':[i for i in range(1000, 2100, 100)]+[1080]
+}
+Best params:  params               {'n_estimators': 2000}
+mean_test_score_0                  0.945365
+mean_test_score_1                  0.944935
+mean_test_score_2                  0.944996
+mean_test_score_3                  0.945365
+avg                                0.945165
+
+-- Stop the pipneline here Because the n_estimators is already high (880). The reduce of learning rate is not neccessary.
+
+
+Test on test set
+Accuracy 0: 94.75%
+Accuracy 1: 94.66%
+Accuracy 2: 94.75%
+Accuracy 3: 94.69%
+Average accuracy is: 94.71%

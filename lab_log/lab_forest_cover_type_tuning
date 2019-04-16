@@ -1,0 +1,146 @@
+Find optimal n_estimators
+Parameters of the xgboost: 
+    {learning_rate =0.1,
+    n_estimators=5000,
+    max_depth=5,
+    min_child_weight=1,
+    gamma=0,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    objective= 'binary:logistic',
+    n_jobs=-1}
+metrics: 'error'
+early_stopping_rounds=50
+Best round: 1500
+Tuning max_depth and min_child_weight
+Grid = {
+ 'max_depth':range(1,10,2),
+ 'min_child_weight':range(1,300,50)
+}
+Best params:  params               {'max_depth': 9, 'min_child_weight': 1}
+mean_test_score_0                                   0.958954
+avg                                                 0.958954
+
+Grid = {
+ 'max_depth':range(1,10,2),
+ 'min_child_weight':range(1, 10, 2)
+}
+Best params:  params               {'max_depth': 9, 'min_child_weight': 1}
+mean_test_score_0                                   0.958954
+avg                                                 0.958954
+
+Grid = {
+ 'max_depth':[9, 10],
+ 'min_child_weight':[1, 2]
+}
+
+Best params:  params               {'max_depth': 10, 'min_child_weight': 1}
+mean_test_score_0                                    0.960579
+avg                                                  0.960579
+
+Grid = {
+ 'max_depth':[i for i in range(10, 31, 5)]
+}
+Best params:  params               {'max_depth': 25}
+mean_test_score_0             0.963226
+avg                           0.963226
+
+Grid = {
+ 'max_depth':[i for i in range(21, 30, 2)]
+}
+Best params:  params               {'max_depth': 21}
+mean_test_score_0             0.963347
+avg                           0.963347
+
+
+Tuning gamma
+Grid = {
+ 'gamma':[i/10.0 for i in range(0,5)]
+}
+Best params:  params               {'gamma': 0.0}
+mean_test_score_0          0.963347
+avg                        0.963347
+
+
+Recablirating and 1st tune the n_estimators
+Parameters of the xgboost: 
+    {learning_rate =0.1,
+    n_estimators=5000,
+    max_depth=10,
+    min_child_weight=1,
+    gamma=0.1,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    objective= 'binary:logistic',
+    n_jobs=-1,
+    scale_pos_weight=1,
+    seed=27}
+metrics: 'error'
+early_stopping_rounds=50
+Best round: 401
+
+Grid = {
+ 'n_estimators':[i for i in range(100, 1501, 100)]
+}
+Best params:  params               {'n_estimators': 700}
+mean_test_score_0                 0.963385
+avg                               0.963385
+
+Grid = {
+ 'n_estimators':[i for i in range(650, 750, 10)]
+}
+Best params:  params               {'n_estimators': 690}
+mean_test_score_0                 0.963395
+avg                               0.963395
+
+Tuning the subsample and colsample_bytree
+Grid = {
+ 'subsample':[i/10.0 for i in range(6,10)],
+ 'colsample_bytree':[i/10.0 for i in range(6,10)]
+}
+Best params:  params               {'colsample_bytree': 0.9, 'subsample': 0.9}
+mean_test_score_0                                       0.964438
+avg                                                     0.964438
+
+Tuning reg_alpha
+Grid = {
+ 'reg_alpha':[0, 1e-5, 1e-2, 0.1, 1, 100]
+}
+Best params:  params               {'reg_alpha': 0.01}
+mean_test_score_0               0.964465
+avg                             0.964465
+
+Grid = {
+ 'reg_alpha':[1e-2, 1e-3, 1e-5]
+}
+Best params:  params               {'reg_alpha': 0.01}
+mean_test_score_0               0.964465
+avg                             0.964465
+
+Recalibrating the n_estimators and tuning
+        learning_rate =0.01,
+        n_estimators=690,
+        max_depth=21,
+        min_child_weight=1,
+        gamma=0,
+        subsample=0.9,
+        colsample_bytree=0.9,
+        objective= 'multi:softmax',
+        num_class = 7,
+        reg_alpha = 0.01,
+        n_jobs=-1,
+        seed=0
+Best round = 2099
+
+Grid = {
+ 'n_estimators':[i for i in range(1500, 2500, 100)]
+}
+Best params:  params               {'n_estimators': 2400}
+mean_test_score_0                  0.964025
+avg                                0.964025
+
+--Stop the pipeline because the n_estimators is high and the performance decreases.
+ 
+Test on the test set
+Accuracy 0: 96.88%
+Average accuracy is: 96.88%

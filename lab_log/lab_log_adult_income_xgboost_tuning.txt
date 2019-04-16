@@ -1,0 +1,279 @@
+Find optimal n_estimators
+Parameters of the xgboost: 
+    {learning_rate =0.1,
+    n_estimators=5000,
+    max_depth=5,
+    min_child_weight=1,
+    gamma=0,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    objective= 'binary:logistic',
+    n_jobs=-1}
+metrics: 'error'
+early_stopping_rounds=50
+Best round: 159
+Tuning max_depth and min_child_weight
+
+Grid = {
+ 'max_depth':range(1,10,2),
+ 'min_child_weight':range(1,300,50)
+}
+Best params:  params               {'max_depth': 5, 'min_child_weight': 1}
+mean_test_score_0                                   0.869457
+mean_test_score_1                                   0.870644
+mean_test_score_2                                   0.870603
+mean_test_score_3                                   0.871381
+mean_test_score_4                                   0.869825
+mean_test_score_5                                    0.86962
+mean_test_score_6                                   0.869498
+mean_test_score_7                                   0.869784
+mean_test_score_8                                   0.870603
+avg                                                 0.870157
+
+Grid = {
+ 'max_depth':range(1,10,2),
+ 'min_child_weight':range(1, 10, 2)
+}
+Best params:  params               {'max_depth': 5, 'min_child_weight': 3}
+mean_test_score_0                                   0.869989
+mean_test_score_1                                   0.870685
+mean_test_score_2                                   0.871299
+mean_test_score_3                                   0.871054
+mean_test_score_4                                   0.870439
+mean_test_score_5                                   0.869375
+mean_test_score_6                                   0.869702
+mean_test_score_7                                    0.86962
+mean_test_score_8                                   0.869661
+avg                                                 0.870203
+
+Grid = {
+ 'max_depth':[4, 5, 6],
+ 'min_child_weight':[2, 3 ,4]
+}
+Best params:  params               {'max_depth': 5, 'min_child_weight': 3}
+mean_test_score_0                                   0.869989
+mean_test_score_1                                   0.870685
+mean_test_score_2                                   0.871299
+mean_test_score_3                                   0.871054
+mean_test_score_4                                   0.870439
+mean_test_score_5                                   0.869375
+mean_test_score_6                                   0.869702
+mean_test_score_7                                    0.86962
+mean_test_score_8                                   0.869661
+avg                                                 0.870203
+
+Grid = {
+ 'max_depth':[4, 5, 6],
+ 'min_child_weight':[2, 3, 4]
+}
+
+Best params:  params               {'max_depth': 5, 'min_child_weight': 3}
+mean_test_score_0                                   0.869989
+mean_test_score_1                                   0.870685
+mean_test_score_2                                   0.871299
+mean_test_score_3                                   0.871054
+mean_test_score_4                                   0.870439
+mean_test_score_5                                   0.869375
+mean_test_score_6                                   0.869702
+mean_test_score_7                                    0.86962
+mean_test_score_8                                   0.869661
+avg                                                 0.870203
+
+Tuning gamma
+
+Grid = {
+ 'gamma':[i/10.0 for i in range(0,5)]
+}
+Best params:  params               {'gamma': 0.0}
+mean_test_score_0          0.869989
+mean_test_score_1          0.870685
+mean_test_score_2          0.871299
+mean_test_score_3          0.871054
+mean_test_score_4          0.870439
+mean_test_score_5          0.869375
+mean_test_score_6          0.869702
+mean_test_score_7           0.86962
+mean_test_score_8          0.869661
+avg                        0.870203
+
+Recablirating the n_estimators and 1st tune the n_estimators
+
+XGBClassifier(
+    learning_rate =0.1,
+    n_estimators=5000,
+    max_depth=5,
+    min_child_weight=3,
+    gamma=0.0,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    objective= 'binary:logistic',
+    n_jobs=-1,
+    scale_pos_weight=1
+    )
+metrics: 'error'
+early_stopping_rounds=50
+Best round: 241
+
+Grid = {
+ 'n_estimators':[i for i in range(100, 1000, 100)]+[241]
+}
+Best params:  params               {'n_estimators': 200}
+mean_test_score_0                 0.869252
+mean_test_score_1                 0.870603
+mean_test_score_2                 0.870562
+mean_test_score_3                 0.870726
+mean_test_score_4                 0.870726
+mean_test_score_5                 0.869252
+mean_test_score_6                 0.869784
+mean_test_score_7                  0.87048
+mean_test_score_8                 0.869866
+avg                               0.870139
+
+param_test8 = {
+ 'n_estimators':[i for i in range(150, 250, 20)]
+}
+
+Best params:  params               {'n_estimators': 170}
+mean_test_score_0                 0.869989
+mean_test_score_1                 0.870276
+mean_test_score_2                 0.871217
+mean_test_score_3                 0.871709
+mean_test_score_4                 0.870562
+mean_test_score_5                 0.868924
+mean_test_score_6                 0.870562
+mean_test_score_7                 0.869661
+mean_test_score_8                 0.869498
+avg                               0.870266
+
+
+Tuning the subsample and colsample_bytree
+
+Grid = {
+ 'subsample':[i/10.0 for i in range(6,10)],
+ 'colsample_bytree':[i/10.0 for i in range(6,10)]
+}
+
+Best params:  params               {'colsample_bytree': 0.7, 'subsample': 0.9}
+mean_test_score_0                                       0.870562
+mean_test_score_1                                        0.87089
+mean_test_score_2                                       0.871873
+mean_test_score_3                                       0.870726
+mean_test_score_4                                       0.870276
+mean_test_score_5                                       0.870808
+mean_test_score_6                                       0.869784
+mean_test_score_7                                       0.870235
+mean_test_score_8                                        0.86962
+avg                                                      0.87053
+
+Grid = {
+ 'subsample':[i/100.0 for i in range(85,100,5)],
+ 'colsample_bytree':[i/100.0 for i in range(65,80,5)]
+}
+
+Best params:  params               {'colsample_bytree': 0.7, 'subsample': 0.9}
+mean_test_score_0                                       0.870562
+mean_test_score_1                                        0.87089
+mean_test_score_2                                       0.871873
+mean_test_score_3                                       0.870726
+mean_test_score_4                                       0.870276
+mean_test_score_5                                       0.870808
+mean_test_score_6                                       0.869784
+mean_test_score_7                                       0.870235
+mean_test_score_8                                        0.86962
+avg                                                      0.87053
+
+Tuning Regularization Parameters
+Grid = {
+ 'reg_alpha':[0, 1e-5, 1e-2, 0.1, 1, 100]
+}
+Best params:  params               {'reg_alpha': 0.01}
+mean_test_score_0               0.870521
+mean_test_score_1               0.869907
+mean_test_score_2                 0.8722
+mean_test_score_3               0.871135
+mean_test_score_4               0.870521
+mean_test_score_5               0.870317
+mean_test_score_6               0.870767
+mean_test_score_7               0.870153
+mean_test_score_8               0.869743
+avg                             0.870585
+
+Grid = {
+ 'reg_alpha':[1e-4, 5e-4, 1e-3, 5e-3, 1e-2]
+}
+Best params:  params               {'reg_alpha': 0.01}
+mean_test_score_0               0.870521
+mean_test_score_1               0.869907
+mean_test_score_2                 0.8722
+mean_test_score_3               0.871135
+mean_test_score_4               0.870521
+mean_test_score_5               0.870317
+mean_test_score_6               0.870767
+mean_test_score_7               0.870153
+mean_test_score_8               0.869743
+avg                             0.870585
+
+
+Reduce the learning rate and tune n_estimators
+Recalibrating the n_estimators
+Find optimal n_estimators
+Parameters of the xgboost: 
+    XGBClassifier(
+    learning_rate =0.01,
+    n_estimators=5000,
+    max_depth=5,
+    min_child_weight=3,
+    gamma=0.0,
+    subsample=0.9,
+    colsample_bytree=0.7,
+    objective= 'binary:logistic',
+    n_jobs=-1,
+    reg_alpha=0.01,
+    scale_pos_weight=1,
+    seed=0)
+metrics: 'error'
+early_stopping_rounds=50
+Best round: 164
+
+Grid = {
+ 'n_estimators':[i for i in range(100, 1501, 100)]+[164]
+}
+Best params:  params               {'n_estimators': 1500}
+mean_test_score_0                  0.870071
+mean_test_score_1                  0.870071
+mean_test_score_2                  0.870398
+mean_test_score_3                   0.87175
+mean_test_score_4                  0.869866
+mean_test_score_5                  0.870439
+mean_test_score_6                  0.869989
+mean_test_score_7                  0.870808
+mean_test_score_8                  0.870071
+avg                                0.870385
+
+Grid = {
+ 'n_estimators':[i for i in range(1500, 2501, 100)]
+}
+Best params:  params               {'n_estimators': 2200}
+mean_test_score_0                  0.870194
+mean_test_score_1                  0.870194
+mean_test_score_2                  0.871381
+mean_test_score_3                  0.871095
+mean_test_score_4                  0.870276
+mean_test_score_5                  0.870931
+mean_test_score_6                  0.871299
+mean_test_score_7                  0.871504
+mean_test_score_8                  0.870521
+avg                                0.870822
+
+
+Test on test set
+Accuracy 0: 87.58%
+Accuracy 1: 87.54%
+Accuracy 2: 87.56%
+Accuracy 3: 87.54%
+Accuracy 4: 87.56%
+Accuracy 5: 87.61%
+Accuracy 6: 87.59%
+Accuracy 7: 87.54%
+Accuracy 8: 87.55%
+Average accuracy is: 87.56%
