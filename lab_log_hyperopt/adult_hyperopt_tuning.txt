@@ -1,0 +1,36 @@
+Grid =
+{
+            'n_estimators': hp.choice("n_estimators", range(1500, 2501, 100)),
+            'max_depth': hp.choice("max_depth", range(1,10,1)),
+            'min_child_weight': hp.choice ('min_child_weight', range(1,10,1)),
+            'subsample': hp.uniform ('subsample', 0.6, 1),
+            'colsample_bytree': hp.uniform ('colsample_bytree', 0.6, 1),
+            'gamma': hp.uniform ('gamma', 0.1, 0.5),
+            'reg_alpha': hp.uniform ('reg_alpha', 1e-2, 0.1)
+}
+
+
+
+Best accuracy: 0.8712174023842396
+
+Best parameters = {
+'colsample_bytree': 0.7282781967777306, 
+'gamma': 0.41790128035083246, 
+'max_depth': 4, 
+'min_child_weight': 2,
+'n_estimators': 1800,
+'reg_alpha': 0.031582064051303343,
+'subsample': 0.9999789530477727
+}
+
+Test on the test set
+Accuracy 0: 87.49%
+Accuracy 1: 87.47%
+Accuracy 2: 87.49%
+Accuracy 3: 87.49%
+Accuracy 4: 87.48%
+Accuracy 5: 87.50%
+Accuracy 6: 87.50%
+Accuracy 7: 87.50%
+Accuracy 8: 87.51%
+Average accuracy is: 87.49%
