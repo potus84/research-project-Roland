@@ -29,7 +29,7 @@ from hyperopt import hp, fmin, tpe, STATUS_OK, Trials, space_eval
 # In[7]:
 
 
-os.chdir('/home/tai/Projects/research-project-Roland')
+os.chdir('/home/tai/research-project-Roland')
 
 
 # ### Load train and test data
@@ -327,14 +327,14 @@ space = {
             'subsample': hp.uniform ('subsample', 0.7, 1),
             'colsample_bytree': hp.uniform ('colsample_bytree', 0.7, 1),
             'gamma': hp.uniform ('gamma', 0.1, 0.5),
-            'reg_alpha': hp.uniform ('reg_alpha', 1e-2, 0)
+            'reg_alpha': hp.uniform ('reg_alpha', 0, 1e-2)
         }
 
 trials = Trials()
 best = fmin(fn=objective,
             space=space,
             algo=tpe.suggest,
-            max_evals=1,
+            max_evals=500,
             trials=trials)
 
 best_params = space_eval(space, best)
